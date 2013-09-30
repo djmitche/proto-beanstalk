@@ -1,0 +1,3 @@
+addInstruction(curOpcode++, "RED", function(machine) {
+   machine.red = machine.stack.peek(0);
+});
