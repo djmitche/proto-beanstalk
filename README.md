@@ -40,3 +40,29 @@ First, get your repository set up; following [this documentation](http://docs.aw
 To make changes, edit things locally and run ``git aws.push`` to push a new version to the environment.
 
 To clean up, run ``eb delete``.
+
+Building the Compiler
+---------------------
+
+Building the compiler is a little tricky, since it builds with a hard-coded path to its ``platform_ops`` and other files.
+So it must be built with that path pointing to where those files will be placed by the Beanstalk infrastructure.
+
+On an Amazon instance of the same type as used for Beanstalk (64-bit Amazon Linux), install the following:
+
+```
+yum install gcc gcc-c++ automake libtool libtool-ltdl-devel make
+```
+
+Then, from the root of the proto project:
+
+* ``cd proto``
+* ``libtoolize``
+* ``./autogen.sh``
+* ``./configure --prefix=/opt/python/current/app``
+* ``make``
+
+Unfortunately, proto does not support installs with DESTDIR, so we need to just install this in place and then extract from there.
+
+* ``sudo make install``
+
+Then copy ``/opt/python/current/app/bin/p2b`` and ``/opt/python/current/app/share`` to the root of the proto-beanstalk project.
