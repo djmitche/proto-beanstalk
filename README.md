@@ -7,7 +7,7 @@ Details
 -------
 
 WebProto is mostly static content - the `static/` directory of this repository.
-When it is time to compile a Proto program, the frontend JS calls back to the CGI script at `/cgi-bin/webcompiler`.
+When it is time to compile a Proto program, the frontend JS calls back to the CGI script at `/webcompiler`.
 
 This compiler is itself a compiled native binary.
 Beanstalk does not support compiled applications directly.
@@ -40,6 +40,12 @@ First, get your repository set up; following [this documentation](http://docs.aw
 To make changes, edit things locally and run ``git aws.push`` to push a new version to the environment.
 
 To clean up, run ``eb delete``.
+
+Updating Static Data
+--------------------
+
+There is only one modification made to static/ from the original proto tarball.
+In ``index.html``, the ``url`` parameter for the ``webcompiler`` is set to ``/webcompiler``, since Apache is configured by Beanstalk to treat ``/cgi-bin`` as a path to actual CGI scripts.
 
 Building the Compiler
 ---------------------

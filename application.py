@@ -15,7 +15,7 @@ application.debug=True
 def ui_redir():
     return flask.redirect(flask.url_for('static', filename='webproto/index.html'))
 
-@application.route('/cgi-bin/webcompiler')
+@application.route('/webcompiler')
 def webcompiler(program=None):
     program = flask.request.args.get('program')
     assert program is not None
