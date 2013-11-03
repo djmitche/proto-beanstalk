@@ -1,0 +1,26 @@
+# Inventory of plugin `libdistributions'
+Distribution grid = libdistributions
+Distribution grideps = libdistributions
+Distribution xgrid = libdistributions
+Distribution hexgrid = libdistributions
+Distribution fixedpt = libdistributions
+Distribution cylinder = libdistributions
+Distribution ovoid = libdistributions
+Distribution torus = libdistributions
+
+# Inventory of plugin `libmica2mote'
+# Some types of Mica2 Mote I/O
+Layer mote-io = libmica2mote
+
+# Inventory of plugin `libradiomodels'
+# More complex radio models
+Layer wormholes = libradiomodels
+Layer multiradio = libradiomodels
+
+# Inventory of plugin `libsimplelifecycle'
+# Cloning and apoptosis
+Layer simple-life-cycle = libsimplelifecycle
+
+# Inventory of plugin `libstopwhen'
+Layer stop-when = libstopwhen
+

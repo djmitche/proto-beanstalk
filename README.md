@@ -65,4 +65,9 @@ Unfortunately, proto does not support installs with DESTDIR, so we need to just 
 
 * ``sudo make install``
 
-Then copy ``/opt/python/current/app/bin/p2b`` and ``/opt/python/current/app/share`` to the root of the proto-beanstalk project.
+Then copy `bin/p2b``, ``lib``, and ``share`` from ``/opt/python/current/app`` to the root of the proto-beanstalk project.
+
+Bugs
+----
+* Proto is not DESTDIR-compatible: registry generation assumes the install paths exist.
+* Proto installs .a files, even though only .so files are used for plugins.
