@@ -19,7 +19,7 @@ def ui_redir():
 def webcompiler(program=None):
     program = flask.request.args.get('program')
     assert program is not None
-    output = subprocess.Popen([p2b_path, '--instructions', program], stdout=subprocess.PIPE).communicate()[0]
+    output = subprocess.Popen([p2b_path, '--json', '--instructions', program], stdout=subprocess.PIPE).communicate()[0]
     return flask.Response(output, mimetype="application/json")
  
 if __name__ == '__main__':
