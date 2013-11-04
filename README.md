@@ -75,5 +75,18 @@ Then copy `bin/p2b``, ``lib``, and ``share`` from ``/opt/python/current/app`` to
 
 Bugs
 ----
+
+Proto
+.....
+
 * Proto is not DESTDIR-compatible: registry generation assumes the install paths exist.
 * Proto installs .a files, even though only .so files are used for plugins.
+
+Beanstalk
+.........
+
+The [Amazon Docs](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options.html#command-options-python) would lead you to think that `` aws:elasticbeanstalk:container:python:staticfiles`` can be used to manage static files.
+This is a lie.
+It [doesn't work](http://stackoverflow.com/a/17436013/2737366).  
+
+Instead, ``.ebextensions/custom-apache.config`` in this repository installs a custom Apache config to accomplish this, as suggested in the stackoverflow post.
