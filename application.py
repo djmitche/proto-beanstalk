@@ -13,7 +13,7 @@ application.debug=True
  
 @application.route('/')
 def ui_redir():
-    return flask.redirect(flask.url_for('static', filename='webproto/index.html'))
+    return flask.redirect("/webproto/index.html")
 
 @application.route('/webcompiler')
 def webcompiler(program=None):
