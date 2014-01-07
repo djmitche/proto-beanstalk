@@ -35,7 +35,7 @@ First, get your repository set up; following [this documentation](http://docs.aw
   * set up a default instance profile
 * Run ``eb start``.  This will take a little while.
   Once it finishes, you should be able to find your new app in the beanstalk administrative console, if you care.
-* Run ``eb statis`` to see the URL for your site.
+* Run ``eb status`` to see the URL for your site.
 
 To make changes, edit things locally and run ``git aws.push`` to push a new version to the environment.
 
