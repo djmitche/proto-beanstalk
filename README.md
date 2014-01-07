@@ -35,11 +35,23 @@ First, get your repository set up; following [this documentation](http://docs.aw
   * set up a default instance profile
 * Run ``eb start``.  This will take a little while.
   Once it finishes, you should be able to find your new app in the beanstalk administrative console, if you care.
+  The script should give you a long, ugly URL where your site is hosted.
+  Use that to check that it works.
 * Run ``eb status`` to see the URL for your site.
 
 To make changes, edit things locally and run ``git aws.push`` to push a new version to the environment.
 
 To clean up, run ``eb delete``.
+
+Nicer Hostname
+--------------
+
+To make an easier-to-use hostname for the site, e.g., ``webproto.bbn.com``, simply make that record a CNAME to the long AWS hostname for your site.
+For example, in my setup the long URL is ``http://proto-beanstalk-prod-n2bpekc2ws.elasticbeanstalk.com/``, so I would add
+
+    webproto.v.igoro.us 3600 IN CNAME proto-beanstalk-prod-n2bpekc2ws.elasticbeanstalk.com
+
+And, once that has propagated, the site should be available at http://webproto.v.igoro.us.
 
 Updating Static Data
 --------------------
@@ -53,13 +65,17 @@ Building the Compiler
 Building the compiler is a little tricky, since it builds with a hard-coded path to its ``platform_ops`` and other files.
 So it must be built with that path pointing to where those files will be placed by the Beanstalk infrastructure.
 
-On an Amazon instance of the same type as used for Beanstalk (64-bit Amazon Linux), install the following:
+Get an Amazon instance of the same type as used for Beanstalk (64-bit Amazon Linux).
+You can create an instance manually using the EC2 web console or what-have-you, or if you're quick you can just login to one of the running instances for your site.
+
+Install the following:
 
 ```
 yum install gcc gcc-c++ automake libtool libtool-ltdl-devel make
 ```
 
-Then, from the root of the proto project:
+Then, check out or untar a copy of Proto.
+From the root of the proto project:
 
 * ``cd proto``
 * ``libtoolize``
@@ -71,7 +87,7 @@ Unfortunately, proto does not support installs with DESTDIR, so we need to just 
 
 * ``sudo make install``
 
-Then copy `bin/p2b``, ``lib``, and ``share`` from ``/opt/python/current/app`` to the root of the proto-beanstalk project.
+Then copy `bin/p2b``, ``lib``, and ``share`` from ``/opt/python/current/app`` to the root of the proto-beanstalk project (the one this README is in).
 
 Bugs
 ----
